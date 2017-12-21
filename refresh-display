@@ -1,0 +1,15 @@
+#!/bin/sh
+# define default variables
+BALANCE=Unknown;
+QR_PATH=~/disp/ex-qr-code.png;
+
+ADDRESS=$(jq -r ".address" /home/alarm/.ethereum/keystore/*);
+BALANCE=$(geth --exec 'web3.fromWei(eth.getBalance(eth.coinbase), "ether")' console);
+qrencode -o qr-code.png '0x$ADDRESS';
+QR_PATH=qr-code.png;
+convert $QR_PATH -resize 104x104 $QR_PATH;
+convert $QR_PATH -gravity south -extent 104x212 $QR_PATH;
+
+sudo ./main.py $QR_PATH $BALANCE
+
+
