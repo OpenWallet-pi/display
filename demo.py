@@ -33,7 +33,7 @@ from PIL import ImageDraw
 COLORED = 1
 UNCOLORED = 0
 
-def main():
+def demo():
     epd = epd2in13b.EPD()
     epd.init()
 
@@ -65,5 +65,5 @@ def main():
     # You can get frame buffer from an image or import the buffer directly:
     #epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
 
-if __name__ == '__main__':
-    main()
+if __name__ == '__demo__':
+    demo()
